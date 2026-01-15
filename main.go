@@ -10,10 +10,10 @@ func main() {
     cores := apps.CPUCores()
 
     for {
-        usage := apps.CPUInfo() // Get this every second
-        ram := apps.RAMInfo()
+        usage := apps.CPUInfo()
+        ramPercentage, ramUsed, ramTotal := apps.RAMInfo()
 
-        fmt.Printf("\rCores: %d | CPU: %.2f%% | RAM: %.2f%%", cores, usage, ram)
+        fmt.Printf("\rCores: %d | CPU: %.2f%% | RAM: %.2f%% (Used: %.0f MiB / Total: %.0f MiB)", cores, usage, ramPercentage, ramUsed, ramTotal)
         time.Sleep(time.Second)
     }
 }

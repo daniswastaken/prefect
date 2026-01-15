@@ -7,7 +7,6 @@ import (
 )
 
 func CPUInfo() float64 {
-    // 1. Just do the action ONCE
     cpuUsage, err := cpu.Percent(time.Second, false)
 
     if err != nil {
@@ -15,7 +14,6 @@ func CPUInfo() float64 {
         return 0
     }
 
-    // 2. Return the result and get out
     return cpuUsage[0]
 }
 
