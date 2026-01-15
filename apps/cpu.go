@@ -1,4 +1,4 @@
-package main
+package apps
 
 import (
 	"fmt"
@@ -6,22 +6,23 @@ import (
 	"time"
 )
 
-func main() {
-	cpuCores, err := cpu.Counts(true)
-
-	if err != nil {
-		fmt.Println("Error getting CPU core count:", err)
-		return
-	} // catch CPU error
-
+func CPUInfo() float64{
 	for {
 		cpuUsage, err := cpu.Percent(time.Second, false)
 
 		if err != nil {
 			fmt.Println("Error reading CPU:", err)
-			return
+			return 0
 		} // catch CPU error
 
+        return cpuUsage[0]
+        /*
 		fmt.Printf("\rCPU Usage: %.2f%% | Cores: %d ", cpuUsage[0], cpuCores)
+        */
 	}
+}
+
+func CPUCores() int {
+    cores, _ := cpu.Counts(true)
+    return cores
 }
