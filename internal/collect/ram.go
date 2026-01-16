@@ -1,4 +1,4 @@
-package apps
+package collect
 
 import (
 	"github.com/shirou/gopsutil/v4/mem"
