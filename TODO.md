@@ -1,0 +1,1 @@
+[ ]Fix parser.go to use renaming system instead of trunctation
