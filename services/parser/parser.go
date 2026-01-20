@@ -2,13 +2,13 @@ package parser
 
 import (
 	"encoding/json"
-	"os"
 	"log"
+	"os"
 	"prefect/services/sys"
 )
 
 type SysData struct {
-	CPUCores int     `json:"cpu_cores"`
+	CPUCores int `json:"cpu_cores"`
 	CPUUsage int `json:"cpu_usage"`
 	// Add other system data fields as needed
 }
