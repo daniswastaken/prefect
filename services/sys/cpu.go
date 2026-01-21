@@ -3,7 +3,6 @@ package sys
 import (
 	"github.com/shirou/gopsutil/v4/cpu"
 	"time"
-	"math"
 )
 
 func CPUCores() int {
@@ -23,5 +22,5 @@ func CPUUsage() int {
 		return 0
 	}
 
-	return int(math.Round(percentages[0]))
+	return int(percentages[0])
 }
