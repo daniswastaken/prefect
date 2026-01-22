@@ -2,7 +2,10 @@ module prefect
 
 go 1.25.5
 
-require github.com/shirou/gopsutil/v4 v4.25.12
+require (
+	github.com/gorilla/websocket v1.5.3
+	github.com/shirou/gopsutil/v4 v4.25.12
+)
 
 require (
 	github.com/ebitengine/purego v0.9.1 // indirect
