@@ -12,11 +12,11 @@ type SysData struct {
 	// RAM
 	RAMTotal   int `json:"ram_total"`
 	RAMUsed    int `json:"ram_used"`
-	RAMPercent int `json:"ram_percent"`
+	RAMUsage   int `json:"ram_usage"`
 }
 
 func SysDataParser() SysData {
-	RAMTotal, RAMUsed, RAMPercent := sys.RAM()
+	RAMTotal, RAMUsed, RAMUsage := sys.RAM()
 
 	// Data Structures
 	return SysData{
@@ -24,7 +24,7 @@ func SysDataParser() SysData {
 		CPUUsage:   sys.CPUUsage(),
 		RAMTotal:   RAMTotal,
 		RAMUsed:    RAMUsed,
-		RAMPercent: RAMPercent,
+		RAMUsage: RAMUsage,
 	}
 
 }

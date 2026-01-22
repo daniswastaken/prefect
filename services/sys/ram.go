@@ -14,7 +14,7 @@ func RAM() (int, int, int) {
 
 	total := int(virtualMem.Total / (1024 * 1024))
 	used := int(virtualMem.Used / (1024 * 1024))
-	percent := int(virtualMem.UsedPercent)
+	usage := int(virtualMem.UsedPercent)
 
-	return total, used, percent
+	return total, used, usage
 }
