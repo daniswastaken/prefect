@@ -1,0 +1,24 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+
+  /* Disable scrolling */
+  overflow: hidden;
+}
+
+body {
+  background-image: url('./media/wallpapers/wallpaper.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.system_stats {
+    border-radius: 2px;
+    border-width: 2px;
+    border-color: white;
+    text-align: center;
+    color: white;
+}
