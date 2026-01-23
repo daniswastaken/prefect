@@ -12,6 +12,9 @@ socket.onmessage = (event) => {
     const ramUsed = document.getElementById("ram_used");
     const ramTotal = document.getElementById("ram_total");
     const ramUsage = document.getElementById("ram_usage");
+    const diskUsed = document.getElementById("disk_used");
+    const diskTotal = document.getElementById("disk_total");
+    const diskUsage = document.getElementById("disk_usage");
 
     if (cpuCores) {
         cpuCores.innerText = `${data.cpu_cores} Cores`;
@@ -31,6 +34,18 @@ socket.onmessage = (event) => {
 
     if (ramTotal) {
         ramTotal.innerText = `${data.ram_total}MiB`;
+    }
+
+    if (diskUsage) {
+        diskUsage.innerText = `${data.disk_usage}%`;
+    }
+
+    if (diskUsed) {
+        diskUsed.innerText = `${data.disk_used}GiB`;
+    }
+
+    if (diskTotal) {
+        diskTotal.innerText = `${data.disk_total}GiB`;
     }
     
     console.log("Stats received from Go:", data);

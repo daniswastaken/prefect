@@ -13,10 +13,16 @@ type SysData struct {
 	RAMTotal   int `json:"ram_total"`
 	RAMUsed    int `json:"ram_used"`
 	RAMUsage   int `json:"ram_usage"`
+
+	// Disk
+	DiskTotal uint64 `json:"disk_total"`
+	DiskUsed  uint64 `json:"disk_used"`
+	DiskUsage int    `json:"disk_usage"`
 }
 
 func SysDataParser() SysData {
 	RAMTotal, RAMUsed, RAMUsage := sys.RAM()
+	DiskTotal, DiskUsed, DiskUsage := sys.Disk()
 
 	// Data Structures
 	return SysData{
@@ -25,6 +31,9 @@ func SysDataParser() SysData {
 		RAMTotal:   RAMTotal,
 		RAMUsed:    RAMUsed,
 		RAMUsage: RAMUsage,
+		DiskUsed: DiskUsed,
+		DiskTotal: DiskTotal,
+		DiskUsage: DiskUsage,
 	}
 
 }
