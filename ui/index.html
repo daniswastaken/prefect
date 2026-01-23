@@ -1,28 +1,35 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Prefect</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <title>Prefect</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <body>
+        <!-- System statistics container -->
+        <div class="system_stats">
+            <!-- CPU data display -->
+            <div class="cpu">
+                <p id="cpu_cores">NaN</p>
+                <p id="cpu_usage">NaN</p>
+            </div>
 
-<body>
-    <!-- CPU data display -->
-    <p id="cpu_cores">NaN</p>
-    <p id="cpu_usage">NaN</p>
+            <!-- RAM data display -->
+            <div class="ram">
+                <p id="ram_usage">NaN</p>
+                <p id="ram_used">NaN</p>
+                <p id="ram_total">NaN</p>
+            </div>
 
-    <!-- RAM data display -->
-    <p id="ram_usage">NaN</p>
-    <p id="ram_used">NaN</p>
-    <p id="ram_total">NaN</p>
+            <!-- Disk data display -->
+            <div class="disk">
+                <p id="disk_usage">NaN</p>
+                <p id="disk_used">NaN</p>
+                <p id="disk_total">NaN</p>
+            </div>
+        </div>
 
-    <!-- Disk data display -->
-    <p id="disk_usage">NaN</p>
-    <p id="disk_used">NaN</p>
-    <p id="disk_total">NaN</p>
-
-    <script src="app.js"></script>
-</body>
-
+        <script src="app.js"></script>
+    </body>
 </html>
