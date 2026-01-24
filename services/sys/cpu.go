@@ -6,13 +6,23 @@ import (
 )
 
 func CPUCores() int {
-	cores, err := cpu.Counts(true)
+	cores, err := cpu.Counts(false)
 
 	if err != nil {
 		return 0
 	}
 
 	return cores
+}
+
+func CPUThreads() int {
+	threads, err := cpu.Counts(true)
+
+	if err != nil {
+		return 0
+	}
+
+	return threads
 }
 
 func CPUUsage() int {

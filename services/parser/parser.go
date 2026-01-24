@@ -7,6 +7,7 @@ import (
 type SysData struct {
 	// CPU
 	CPUCores int `json:"cpu_cores"`
+	CPUThreads int `json:"cpu_threads"`
 	CPUUsage int `json:"cpu_usage"`
 
 	// RAM
@@ -27,6 +28,7 @@ func SysDataParser() SysData {
 	// Data Structures
 	return SysData{
 		CPUCores:   sys.CPUCores(),
+		CPUThreads: sys.CPUThreads(),
 		CPUUsage:   sys.CPUUsage(),
 		RAMTotal:   RAMTotal,
 		RAMUsed:    RAMUsed,
