@@ -1,7 +1,9 @@
 package sys
 
 import (
+	"github.com/shirou/gopsutil/v3/host" // temp sensors only ava on v3
 	"github.com/shirou/gopsutil/v4/cpu"
+	"strings"
 	"time"
 )
 
@@ -33,4 +35,27 @@ func CPUUsage() int {
 	}
 
 	return int(percentages[0])
+}
+
+func CPUTemp() int {
+	temps, err := host.SensorsTemperatures()
+	if err != nil {
+		return 0
+	}
+
+	for _, t := range temps {
+		key := strings.ToLower(t.SensorKey)
+
+		// Intel + AMD common package sensors
+		if strings.Contains(key, "package") ||
+			strings.Contains(key, "coretemp") ||
+			strings.Contains(key, "k10temp") {
+
+			if t.Temperature > 0 {
+				return int(t.Temperature)
+			}
+		}
+	}
+
+	return 0
 }

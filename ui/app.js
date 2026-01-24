@@ -8,7 +8,9 @@ socket.onmessage = (event) => {
     const data = JSON.parse(event.data);
 
     const cpuCores = document.getElementById("cpu_cores");
+    const cpuThreads = document.getElementById("cpu_threads");
     const cpuUsage = document.getElementById("cpu_usage");
+    const cpuTemp = document.getElementById("cpu_temp");
     const ramUsed = document.getElementById("ram_used");
     const ramTotal = document.getElementById("ram_total");
     const ramUsage = document.getElementById("ram_usage");
@@ -20,8 +22,16 @@ socket.onmessage = (event) => {
         cpuCores.innerText = `${data.cpu_cores} Cores`;
     }
 
+    if (cpuThreads) {
+        cpuThreads.innerText = `${data.cpu_threads} Threads`;
+    }
+
     if (cpuUsage) {
         cpuUsage.innerText = `${data.cpu_usage}%`;
+    }
+
+    if (cpuTemp) {
+        cpuTemp.innerText = `${data.cpu_temp}°C`;
     }
 
     if (ramUsage) {
