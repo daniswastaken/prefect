@@ -2,6 +2,7 @@ package parser
 
 import (
 	"prefect/services/sys"
+	"time"
 )
 
 type SysData struct {
@@ -10,6 +11,7 @@ type SysData struct {
 	CPUThreads int `json:"cpu_threads"`
 	CPUUsage   int `json:"cpu_usage"`
 	CPUTemp    int `json:"cpu_temp"`
+	CPUPower   int `json:"cpu_power"`
 
 	// RAM
 	RAMTotal int `json:"ram_total"`
@@ -32,6 +34,7 @@ func SysDataParser() SysData {
 		CPUThreads: sys.CPUThreads(),
 		CPUUsage:   sys.CPUUsage(),
 		CPUTemp:    sys.CPUTemp(),
+		CPUPower:   sys.CPUPower(1 * time.Second),
 		RAMTotal:   RAMTotal,
 		RAMUsed:    RAMUsed,
 		RAMUsage:   RAMUsage,

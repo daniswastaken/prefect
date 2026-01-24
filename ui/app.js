@@ -11,6 +11,7 @@ socket.onmessage = (event) => {
     const cpuThreads = document.getElementById("cpu_threads");
     const cpuUsage = document.getElementById("cpu_usage");
     const cpuTemp = document.getElementById("cpu_temp");
+    const cpuPower = document.getElementById("cpu_power");
     const ramUsed = document.getElementById("ram_used");
     const ramTotal = document.getElementById("ram_total");
     const ramUsage = document.getElementById("ram_usage");
@@ -32,6 +33,10 @@ socket.onmessage = (event) => {
 
     if (cpuTemp) {
         cpuTemp.innerText = `${data.cpu_temp}°C`;
+    }
+
+    if (cpuPower) {
+        cpuPower.innerText = `${data.cpu_power}W`;
     }
 
     if (ramUsage) {
