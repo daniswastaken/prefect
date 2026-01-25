@@ -1,41 +1,122 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Prefect</title>
-        <link rel="stylesheet" href="styles.css" />
-    </head>
 
-    <body>
-        <!-- System statistics container -->
-        <div class="system_stats">
-            <!-- CPU data display -->
-            <div class="cpu">
-                <p id="section_title">CPU</p>
-                <p id="cpu_cores">NaN</p>
-                <p id="cpu_threads">NaN</p>
-                <p id="cpu_usage">NaN</p>
-                <p id="cpu_temp">NaN</p>
-                <p id="cpu_power">NaN</p>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prefect Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- CPU Card -->
+        <div class="card">
+            <div class="progress-container">
+                <div class="angular-sweep cpu-sweep"></div>
+                <svg viewBox="0 0 100 100">
+                    <defs>
+                        <mask id="cpu-mask">
+                            <circle id="cpu_circle" cx="50" cy="50" r="40" stroke="white" stroke-width="8" fill="none"
+                                stroke-linecap="round"
+                                style="stroke-dashoffset: 251.2; stroke-dasharray: 251.2; transform: rotate(-90deg); transform-origin: center;">
+                            </circle>
+                        </mask>
+                    </defs>
+                    <circle class="bg-circle" cx="50" cy="50" r="40"></circle>
+                </svg>
+                <div class="percentage"><span id="cpu_usage_num">0</span><span class="unit">%</span></div>
             </div>
+            <div class="info-container">
+                <div class="card-title">CPU</div>
+                <div class="stats-grid">
+                    <span class="stat-label">C/T</span>
+                    <span class="stat-separator">:</span>
+                    <span id="cpu_ct" class="stat-value">0C / 0T</span>
 
-            <!-- RAM data display -->
-            <div class="ram">
-                <p id="section_title">RAM</p>
-                <p id="ram_usage">NaN</p>
-                <p id="ram_used">NaN</p>
-                <p id="ram_total">NaN</p>
-            </div>
+                    <span class="stat-label">Temp</span>
+                    <span class="stat-separator">:</span>
+                    <span id="cpu_temp" class="stat-value">0°C</span>
 
-            <!-- Disk data display -->
-            <div class="disk">
-                <p id="section_title">DISK</p>
-                <p id="disk_usage">NaN</p>
-                <p id="disk_used">NaN</p>
-                <p id="disk_total">NaN</p>
+                    <span class="stat-label">Power</span>
+                    <span class="stat-separator">:</span>
+                    <span id="cpu_power" class="stat-value">0.0 W</span>
+                </div>
             </div>
         </div>
 
-        <script src="app.js"></script>
-    </body>
+        <!-- RAM Card -->
+        <div class="card">
+            <div class="progress-container">
+                <div class="angular-sweep ram-sweep"></div>
+                <svg viewBox="0 0 100 100">
+                    <defs>
+                        <mask id="ram-mask">
+                            <circle id="ram_circle" cx="50" cy="50" r="40" stroke="white" stroke-width="8" fill="none"
+                                stroke-linecap="round"
+                                style="stroke-dashoffset: 251.2; stroke-dasharray: 251.2; transform: rotate(-90deg); transform-origin: center;">
+                            </circle>
+                        </mask>
+                    </defs>
+                    <circle class="bg-circle" cx="50" cy="50" r="40"></circle>
+                </svg>
+                <div class="percentage"><span id="ram_usage_num">0</span><span class="unit">%</span></div>
+            </div>
+            <div class="info-container">
+                <div class="card-title">RAM</div>
+                <div class="stats-grid">
+                    <span class="stat-label">Used</span>
+                    <span class="stat-separator">:</span>
+                    <span id="ram_used" class="stat-value">0 MiB</span>
+
+                    <span class="stat-label">Free</span>
+                    <span class="stat-separator">:</span>
+                    <span id="ram_free" class="stat-value">0 MiB</span>
+
+                    <span class="stat-label">Total</span>
+                    <span class="stat-separator">:</span>
+                    <span id="ram_total" class="stat-value">0 MiB</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- DISK Card -->
+        <div class="card">
+            <div class="progress-container">
+                <div class="angular-sweep disk-sweep"></div>
+                <svg viewBox="0 0 100 100">
+                    <defs>
+                        <mask id="disk-mask">
+                            <circle id="disk_circle" cx="50" cy="50" r="40" stroke="white" stroke-width="8" fill="none"
+                                stroke-linecap="round"
+                                style="stroke-dashoffset: 251.2; stroke-dasharray: 251.2; transform: rotate(-90deg); transform-origin: center;">
+                            </circle>
+                        </mask>
+                    </defs>
+                    <circle class="bg-circle" cx="50" cy="50" r="40"></circle>
+                </svg>
+                <div class="percentage"><span id="disk_usage_num">0</span><span class="unit">%</span></div>
+            </div>
+            <div class="info-container">
+                <div class="card-title">DISK</div>
+                <div class="stats-grid">
+                    <span class="stat-label">Used</span>
+                    <span class="stat-separator">:</span>
+                    <span id="disk_used" class="stat-value">0 GB</span>
+
+                    <span class="stat-label">Free</span>
+                    <span class="stat-separator">:</span>
+                    <span id="disk_free" class="stat-value">0 GB</span>
+
+                    <span class="stat-label">Total</span>
+                    <span class="stat-separator">:</span>
+                    <span id="disk_total" class="stat-value">0 GB</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
 </html>

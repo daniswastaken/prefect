@@ -1,79 +1,54 @@
-// Automatically detects the current host and port
-const host = window.location.host; 
+const host = window.location.host;
 const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
 const socket = new WebSocket(`${protocol}//${host}/ws`);
 
+const CIRCUMFERENCE = 2 * Math.PI * 40; // r=40
+
+function setProgress(circleId, usageId, percentage) {
+    const circle = document.getElementById(circleId);
+    if (circle) {
+        const offset = CIRCUMFERENCE - (percentage / 100) * CIRCUMFERENCE;
+        circle.style.strokeDashoffset = offset;
+    }
+    const usageTextNum = document.getElementById(usageId);
+    if (usageTextNum) {
+        usageTextNum.innerText = percentage;
+    }
+}
+
 socket.onmessage = (event) => {
-    // Parse the JSON string coming from Go into a JS Object
     const data = JSON.parse(event.data);
 
-    const cpuCores = document.getElementById("cpu_cores");
-    const cpuThreads = document.getElementById("cpu_threads");
-    const cpuUsage = document.getElementById("cpu_usage");
+    // CPU Stats
+    setProgress("cpu_circle", "cpu_usage_num", data.cpu_usage);
+    const cpuCT = document.getElementById("cpu_ct");
     const cpuTemp = document.getElementById("cpu_temp");
     const cpuPower = document.getElementById("cpu_power");
+    if (cpuCT) cpuCT.innerText = `${data.cpu_cores}C / ${data.cpu_threads}T`;
+    if (cpuTemp) cpuTemp.innerText = `${data.cpu_temp}°C`;
+    if (cpuPower) cpuPower.innerText = `${data.cpu_power}.0 W`;
+
+    // RAM Stats
+    setProgress("ram_circle", "ram_usage_num", data.ram_usage);
     const ramUsed = document.getElementById("ram_used");
+    const ramFree = document.getElementById("ram_free");
     const ramTotal = document.getElementById("ram_total");
-    const ramUsage = document.getElementById("ram_usage");
+    const freeRAM = data.ram_total - data.ram_used;
+    if (ramUsed) ramUsed.innerText = `${data.ram_used} MiB`;
+    if (ramFree) ramFree.innerText = `${freeRAM} MiB`;
+    if (ramTotal) ramTotal.innerText = `${data.ram_total} MiB`;
+
+    // Disk Stats
+    setProgress("disk_circle", "disk_usage_num", data.disk_usage);
     const diskUsed = document.getElementById("disk_used");
+    const diskFree = document.getElementById("disk_free");
     const diskTotal = document.getElementById("disk_total");
-    const diskUsage = document.getElementById("disk_usage");
-
-    if (cpuCores) {
-        cpuCores.innerText = `${data.cpu_cores} Cores`;
-    }
-
-    if (cpuThreads) {
-        cpuThreads.innerText = `${data.cpu_threads} Threads`;
-    }
-
-    if (cpuUsage) {
-        cpuUsage.innerText = `${data.cpu_usage}%`;
-    }
-
-    if (cpuTemp) {
-        cpuTemp.innerText = `${data.cpu_temp}°C`;
-    }
-
-    if (cpuPower) {
-        cpuPower.innerText = `${data.cpu_power}W`;
-    }
-
-    if (ramUsage) {
-        ramUsage.innerText = `${data.ram_usage}%`;
-    }
-
-    if (ramUsed) {
-        ramUsed.innerText = `${data.ram_used}MiB`;
-    }
-
-    if (ramTotal) {
-        ramTotal.innerText = `${data.ram_total}MiB`;
-    }
-
-    if (diskUsage) {
-        diskUsage.innerText = `${data.disk_usage}%`;
-    }
-
-    if (diskUsed) {
-        diskUsed.innerText = `${data.disk_used}GiB`;
-    }
-
-    if (diskTotal) {
-        diskTotal.innerText = `${data.disk_total}GiB`;
-    }
-    
-    console.log("Stats received from Go:", data);
+    const freeDisk = data.disk_total - data.disk_used;
+    if (diskUsed) diskUsed.innerText = `${data.disk_used} GB`;
+    if (diskFree) diskFree.innerText = `${freeDisk} GB`;
+    if (diskTotal) diskTotal.innerText = `${data.disk_total} GB`;
 };
 
-socket.onopen = () => {
-    console.log("Connected to the Go pipe!");
-};
-
-socket.onclose = () => {
-    console.log("Connection lost. Is the Go server running?");
-};
-
-socket.onerror = (error) => {
-    console.log("WebSocket Error: ", error);
-};
+socket.onopen = () => { console.log("Connected to the Go pipe!"); };
+socket.onclose = () => { console.log("Connection lost."); };
+socket.onerror = (error) => { console.log("WebSocket Error: ", error); };
