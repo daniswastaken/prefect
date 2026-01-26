@@ -26,7 +26,7 @@ socket.onmessage = (event) => {
     const cpuPower = document.getElementById("cpu_power");
     if (cpuCT) cpuCT.innerText = `${data.cpu_cores}C / ${data.cpu_threads}T`;
     if (cpuTemp) cpuTemp.innerText = `${data.cpu_temp}°C`;
-    if (cpuPower) cpuPower.innerText = `${data.cpu_power}.0 W`;
+    if (cpuPower) cpuPower.innerText = `${data.cpu_power} W`;
 
     // RAM Stats
     setProgress("ram_circle", "ram_usage_num", data.ram_usage);
