@@ -36,7 +36,13 @@ func CPUUsage() int {
 		return 0
 	}
 
-	return int(percentages[0])
+	percent := int(percentages[0])
+
+	if percent < 1 {
+		return 1
+	} else {
+		return percent
+	}
 }
 
 func CPUTemp() int {
