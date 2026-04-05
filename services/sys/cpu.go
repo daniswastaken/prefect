@@ -2,7 +2,7 @@ package sys
 
 import (
 	"github.com/shirou/gopsutil/v4/cpu"
-	"github.com/shirou/gopsutil/v4/host"
+	"github.com/shirou/gopsutil/v4/sensors"
 	"os"
 	"strconv"
 	"strings"
@@ -46,7 +46,7 @@ func CPUUsage() int {
 }
 
 func CPUTemp() int {
-	temps, err := host.SensorsTemperatures()
+	temps, err := sensors.Temperatures()
 	if err != nil {
 		return 0
 	}
