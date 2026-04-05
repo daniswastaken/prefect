@@ -3,3 +3,5 @@
 [X] Add more function for CPU to meet the new UI design plans.
 [X] Test the feature of wattage monitoring. Current prediction sudo needed to get those data.
 [ ] Add detection between AMD or Intel CPU for wattage monitoring.
+[ ] Drag and drop upload.
+[ ] Integrated editor.
