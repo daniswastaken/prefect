@@ -27,6 +27,6 @@ Live demo coming soon.
 </p>
 
 <p align="center">
-    <p align="center">Supports various file extension icons."</p>
+    <p align="center">Supports various file extension icons.</p>
     <img src="https://raw.githubusercontent.com/daniswastaken/hdn/main/prefect/demo-3.png" alt="Prefect Banner" width="100%">
 </p>

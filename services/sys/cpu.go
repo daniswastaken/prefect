@@ -46,7 +46,7 @@ func CPUUsage() int {
 }
 
 func CPUTemp() int {
-	temps, err := sensors.Temperatures()
+	temps, err := sensors.SensorsTemperatures()
 	if err != nil {
 		return 0
 	}
